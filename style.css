@@ -4,7 +4,6 @@
     padding: 0;
     font-family: 'Poppins', 'sans-serif';
     box-sizing: border-box;
-
 }
 body {
     background-color: #222;
@@ -19,7 +18,6 @@ body {
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
-
 }
 /*styling search*/
 .search {
@@ -39,6 +37,7 @@ body {
     flex: 1;
     margin-right: 15px;
     font-size: 18px;
+    font-weight: 500; /* improved readability */
 }
 .search button {
     border: 0;
@@ -48,7 +47,10 @@ body {
     width: 60px;
     height: 60px;
     cursor: pointer;
-
+    transition: background-color 0.3s ease;
+}
+.search button:hover {
+    background-color: #d1fff9; /* subtle hover effect */
 }
 .search button img {
     width: 16px;
@@ -87,15 +89,40 @@ body {
 .humidity, .wind {
     font-size: 28px;
     margin-top: -6px;
+}
 
-}
-.weather {
+/* Initially hidden with opacity 0 and display none */
+.weather, .error {
+    opacity: 0;
     display: none;
+    transition: opacity 0.3s ease;
 }
+
+/* Show class to fade in */
+.weather.show, .error.show {
+    display: block;
+    opacity: 1;
+}
+
 .error {
     text-align: center;
     margin-left: 10px;
     font-size: 14px;
     margin-top: 10px;
-    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .card {
+        padding: 20px 15px;
+    }
+    .weather h1 {
+        font-size: 60px;
+    }
+    .weather h2 {
+        font-size: 30px;
+    }
+    .humidity, .wind {
+        font-size: 22px;
+    }
 }

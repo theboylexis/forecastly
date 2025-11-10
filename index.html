@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App - Project</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forecastly</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="card">
-        <!--creating search box-->
-        <div class="search">
-            <input type="text" placeholder="Enter City Here" spellcheck="false">
-            <button><img src="images/search.png"></button>
+  <main class="card" role="main">
+    <!-- Search Box -->
+    <section class="search" aria-label="Search for city weather">
+      <input
+        type="text"
+        placeholder="Enter City Here"
+        spellcheck="false"
+        aria-label="City name"
+      />
+      <button aria-label="Search">
+        <img src="images/search.png" alt="Search icon" />
+      </button>
+    </section>
+
+    <section class="error" role="alert" aria-live="assertive" hidden>
+      <p>City not found!</p>
+    </section>
+
+    <section class="weather" aria-label="Weather information">
+      <img
+        src="images/rain.png"
+        alt="Current weather icon"
+        class="weather-icon"
+      />
+      <h1 class="temp">22°C</h1>
+      <h2 class="city">Accra</h2>
+
+      <div class="details">
+        <div class="col">
+          <img src="images/humidity.png" alt="Humidity icon" />
+          <div>
+            <p class="humidity">50%</p>
+            <p>Humidity</p>
+          </div>
         </div>
-        <div class="error">
-            <p>City not found!</p>
+
+        <div class="col">
+          <img src="images/wind.png" alt="Wind speed icon" />
+          <div>
+            <p class="wind">15 km/h</p>
+            <p>Wind Speed</p>
+          </div>
         </div>
-        <div class="weather">
-            <img src="images/rain.png" class="weather-icon">
-            <h1 class="temp"> 22°C</h1>
-            <h2 class="city">Accra</h2>
-            <div class="details">
-                <div class="col">
-                    <img src="images/humidity.png">
-                    <div>
-                        <p class="humidity">50%</p>
-                        <p>Humidity</p>
-                    </div>
-                </div>
-                 <div class="col">
-                    <img src="images/wind.png">
-                    <div>
-                        <p class="wind">15 km/h</p>
-                        <p>Wind Speed</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-<script src="script.js"></script>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
