@@ -27,7 +27,7 @@ Deployment: Netlify
 
 🚀 Getting Started
 Clone the repository
-git clone https://github.com/your-username/weather-dashboard.git
+git clone https://github.com/theboylexis/weather-dashboard.git
 cd weather-dashboard
 
 Install dependencies
