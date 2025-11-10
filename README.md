@@ -41,18 +41,6 @@ npm start     # if using Create React App
 Build for production
 npm run build
 
-📂 Project Structure
-weather-dashboard/
- ┣ src/
- ┃ ┣ components/   # UI components (SearchBar, WeatherCard, etc.)
- ┃ ┣ pages/        # Main dashboard page
- ┃ ┣ assets/       # Icons, images
- ┃ ┗ App.jsx       # Main app entry point
- ┣ public/         # Static files
- ┣ package.json
- ┣ README.md
- ┗ ...
-
 🌟 Future Roadmap
 
 📆 Add 5-day forecast view
