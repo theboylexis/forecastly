@@ -8,7 +8,7 @@ const weatherIcon = document.querySelector(".weather-icon");
 const weatherSection = document.querySelector(".weather");
 const errorSection = document.querySelector(".error");
 
-// ICON MAP (handles all weather types)
+// ICON MAP
 const iconMap = {
     Clouds: "images/clouds.png",
     Clear: "images/clear.png",
@@ -23,50 +23,66 @@ const iconMap = {
     Sand: "images/mist.png",
     Ash: "images/mist.png",
     Squall: "images/rain.png",
-    Thunderstorm: "images/rain.png"
+    Thunderstorm: "images/rain.png",
 };
 
 async function checkWeather(city) {
     try {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
+        // Handle 404: City not found
         if (response.status === 404) {
-            errorSection.classList.add("show");
-            weatherSection.classList.remove("show");
-            return; 
+            showError();
+            return;
         }
 
-        let data = await response.json();
+        const data = await response.json();
 
-        // SET WEATHER ICON
+        // Update icon
         const weatherType = data.weather[0].main;
         weatherIcon.src = iconMap[weatherType] || "images/clear.png";
 
-        // UPDATE UI
+        // Update UI values
         document.querySelector(".city").textContent = data.name;
         document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
         document.querySelector(".humidity").textContent = data.main.humidity + "%";
         document.querySelector(".wind").textContent = data.wind.speed + " km/h";
 
-        weatherSection.classList.add("show");
-        errorSection.classList.remove("show");
-    } catch (error) {
-        // Handle network or other errors gracefully
-        errorSection.classList.add("show");
-        weatherSection.classList.remove("show");
-        console.error("Error fetching weather data:", error);
+        showWeather();
+    } catch (err) {
+        console.error("Weather fetch error:", err);
+        showError();
     }
 }
 
-// Button click event
+// ✅ Show weather section properly
+function showWeather() {
+    weatherSection.hidden = false;
+    errorSection.hidden = true;
+
+    weatherSection.classList.add("show");
+    errorSection.classList.remove("show");
+}
+
+// ✅ Show error section properly
+function showError() {
+    errorSection.hidden = false;
+    weatherSection.hidden = true;
+
+    errorSection.classList.add("show");
+    weatherSection.classList.remove("show");
+}
+
+// ✅ Button click search
 searchBtn.addEventListener("click", () => {
     const city = searchBox.value.trim();
     if (city) checkWeather(city);
 });
 
-// Optional: Press ENTER to search
-searchBox.addEventListener("keyup", (e) => {
+// ✅ Enter key search (RELIABLE)
+searchBox.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
+        e.preventDefault();
         const city = searchBox.value.trim();
         if (city) checkWeather(city);
     }
